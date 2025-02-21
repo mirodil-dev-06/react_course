@@ -107,14 +107,7 @@ const Cards = () => {
           <TimeButton label="Short Break" minutes={5} color='#38858a' onClick={handleSetTime} />
           <TimeButton label="Long Break" minutes={15} color='#397097' onClick={handleSetTime} />
         </HStack>
-
-        <Text
-          {...styles.timerText}
-          transition="opacity 0.3s ease-in-out"
-          _hover={{ opacity: 0.8 }}
-        >
-          {formatTime(time)}
-        </Text>
+        <Timer time={time} />
 
         <Button {...styles.startButton} onClick={handleStartPause}>
           {isRunning ? 'Pause' : 'Start'}

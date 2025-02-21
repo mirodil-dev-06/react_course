@@ -1,6 +1,7 @@
+import React from 'react';
 import { Box, IconButton, Flex, Separator } from '@chakra-ui/react';
 import { BiDotsVertical } from 'react-icons/bi';
-import React from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const styles = {
   navContainer: {
@@ -11,10 +12,11 @@ const styles = {
     gap: '3',
     justify: 'space-between',
   },
-  logo: {
+  logoLink: {
     fontSize: '23px',
     fontWeight: 'bold',
     color: '#fff',
+    textDecoration: 'none',
   },
   separator: {
     size: 'lg',
@@ -28,21 +30,23 @@ const styles = {
 
 const Nav = () => {
   return (
-    <Box {...styles.navContainer}>
-      <Flex {...styles.flexContainer}>
-        <Box>
-          <a href="#" style={styles.logo}>
-            Pomofocus
-          </a>
-        </Box>
-        <Box>
-          <IconButton {...styles.iconButton}>
-            <BiDotsVertical />
-          </IconButton>
-        </Box>
-      </Flex>
-      <Separator {...styles.separator} />
-    </Box>
+    <Router>
+      <Box {...styles.navContainer}>
+        <Flex {...styles.flexContainer}>
+          <Box>
+            <Link to="/" style={styles.logoLink}>
+              Pomofocus
+            </Link>
+          </Box>
+          <Box>
+            <IconButton {...styles.iconButton}>
+              <BiDotsVertical />
+            </IconButton>
+          </Box>
+        </Flex>
+        <Separator {...styles.separator} />
+      </Box>
+    </Router>
   );
 };
 
