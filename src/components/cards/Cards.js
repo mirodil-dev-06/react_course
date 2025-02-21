@@ -78,7 +78,7 @@ const Cards = () => {
   }, [isRunning, time]);
 
   useEffect(() => {
-    document.title = isRunning ? `${formatTime(time)} - playing game` : 'Time is up!';
+    document.title = isRunning ? `${formatTime(time)} - playing game` : 'Pomofocus';
   }, [time, isRunning]);
 
   const handleStartPause = () => {
