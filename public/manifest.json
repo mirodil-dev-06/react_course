@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Pomofocus",
+  "name": "Manage your tasks efficiently with Pomofocus Todo List. Boost productivity using the Pomodoro Technique.",
   "icons": [
     {
       "src": "favicon.ico",
