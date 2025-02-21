@@ -1,16 +1,17 @@
-import { Container, Box, HStack, Button, Text } from '@chakra-ui/react';
+import { Container, Box, HStack, Button, Text, useBreakpointValue } from '@chakra-ui/react';
 import React, { useEffect, useState, useContext } from 'react';
-import { ColorContext } from '../colorContext/ColorContext'; 
+import { ColorContext } from '../colorContext/ColorContext';
 
+// Responsive stil konfiguratsiyalari
 const styles = {
   container: {
-    maxW: 'lg',
+    maxW: { base: '100%', md: 'lg' }, // Mobil uchun kenglik 100%, desktop uchun 'lg'
     mx: 'auto',
   },
   box: {
     width: 'full',
-    p: '8',
-    mt: '8',
+    p: { base: '4', md: '8' }, // Mobil uchun padding kichikroq
+    mt: { base: '4', md: '8' }, // Mobil uchun margin kichikroq
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     border: 'none',
     rounded: 'md',
@@ -20,18 +21,18 @@ const styles = {
     justifyContent: 'space-between',
   },
   timerText: {
-    fontSize: '120px',
+    fontSize: { base: '60px', md: '120px' }, // Mobil uchun kichikroq shrift
     fontWeight: '900',
     textAlign: 'center',
-    mt: '20px',
+    mt: { base: '10px', md: '20px' }, // Mobil uchun margin kichikroq
     color: 'white',
   },
   startButton: {
     variant: 'solid',
-    px: '16',
-    py: '6',
-    mt: '3',
-    fontSize: '20px',
+    px: { base: '8', md: '16' }, // Mobil uchun padding kichikroq
+    py: { base: '4', md: '6' }, // Mobil uchun padding kichikroq
+    mt: { base: '2', md: '3' }, // Mobil uchun margin kichikroq
+    fontSize: { base: '16px', md: '20px' }, // Mobil uchun kichikroq shrift
     backgroundColor: '#ffffff',
     color: '#000000',
   },
@@ -47,19 +48,24 @@ const Timer = ({ time }) => {
   return <Text {...styles.timerText}>{formatTime(time)}</Text>;
 };
 
-const TimeButton = ({ label, minutes, color, onClick }) => (
-  <Button
-    variant='ghost'
-    p='2'
-    color='white'
-    fontSize='18px'
-    _focus={{ bg: 'rgba(0, 0, 0, 0.15)', color: 'white' }}
-    _active={{ bg: 'rgba(0, 0, 0, 0.15)', color: 'white' }}
-    onClick={() => onClick(minutes, color)}
-  >
-    {label}
-  </Button>
-);
+const TimeButton = ({ label, minutes, color, onClick }) => {
+  const buttonSize = useBreakpointValue({ base: 'sm', md: 'md' }); // Mobil uchun kichikroq tugma
+
+  return (
+    <Button
+      variant='ghost'
+      p='2'
+      color='white'
+      fontSize={{ base: '14px', md: '18px' }} // Mobil uchun kichikroq shrift
+      _focus={{ bg: 'rgba(0, 0, 0, 0.15)', color: 'white' }}
+      _active={{ bg: 'rgba(0, 0, 0, 0.15)', color: 'white' }}
+      onClick={() => onClick(minutes, color)}
+      size={buttonSize} // Tugma o'lchami
+    >
+      {label}
+    </Button>
+  );
+};
 
 const Cards = () => {
   const [time, setTime] = useState(25 * 60);
@@ -102,7 +108,7 @@ const Cards = () => {
   return (
     <Container {...styles.container}>
       <Box {...styles.box}>
-        <HStack wrap='wrap' gap='6' mx='auto'>
+        <HStack wrap='wrap' gap={{ base: '3', md: '6' }} mx='auto'> {/* Mobil uchun gap kichikroq */}
           <TimeButton label="Pomodoro" minutes={25} color='#ba4949' onClick={handleSetTime} />
           <TimeButton label="Short Break" minutes={5} color='#38858a' onClick={handleSetTime} />
           <TimeButton label="Long Break" minutes={15} color='#397097' onClick={handleSetTime} />
