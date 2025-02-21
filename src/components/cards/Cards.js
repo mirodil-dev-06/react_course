@@ -5,7 +5,7 @@ import { ColorContext } from '../colorContext/ColorContext';
 // Responsive stil konfiguratsiyalari
 const styles = {
   container: {
-    maxW: { base: '100%', md: 'lg' }, // Mobil uchun kenglik 100%, desktop uchun 'lg'
+    maxW: { base: '90%', md: 'lg' }, // Mobil uchun kenglik 100%, desktop uchun 'lg'
     mx: 'auto',
   },
   box: {
