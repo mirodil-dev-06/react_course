@@ -1,7 +1,7 @@
-import React from 'react';
-import { Box, IconButton, Flex, Separator } from '@chakra-ui/react';
-import { BiDotsVertical } from 'react-icons/bi';
+import React, { useState } from 'react';
+import { Box, Flex, Separator } from '@chakra-ui/react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+
 
 const styles = {
   navContainer: {
@@ -29,6 +29,7 @@ const styles = {
 };
 
 const Nav = () => {
+
   return (
     <Router>
       <Box {...styles.navContainer}>
@@ -39,9 +40,9 @@ const Nav = () => {
             </Link>
           </Box>
           <Box>
-            <IconButton {...styles.iconButton}>
-              <BiDotsVertical />
-            </IconButton>
+        
+
+
           </Box>
         </Flex>
         <Separator {...styles.separator} />

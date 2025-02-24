@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Link, List } from '@chakra-ui/react';
+import { Box, Container, Text, Link, List } from '@chakra-ui/react';
 
 const styles = {
   heading: {
@@ -66,8 +66,11 @@ const Info = () => {
     'Iterate 3-5 until you finish the tasks',
   ];
 
+
+
   return (
     <Box py="10">
+      <Container maxW='xl' margin='auto'>
       <Heading>An online Pomodoro Timer to boost your productivity</Heading>
 
       <SubHeading>What is Pomofocus?</SubHeading>
@@ -82,7 +85,7 @@ const Info = () => {
 
       <SubHeading>What is Pomodoro Technique?</SubHeading>
       <Divider />
-      <Paragraph>
+      <Paragraph>\
         The Pomodoro Technique is created by Francesco Cirillo for a more productive way to work and study. The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks. Each interval is known as a pomodoro, from the Italian word for 'tomato', after the tomato-shaped kitchen timer that Cirillo used as a university student. -{' '}
         <Link href="https://en.wikipedia.org/wiki/Pomodoro_Technique" {...styles.link}>
           Wikipedia
@@ -98,6 +101,7 @@ const Info = () => {
         </List.Item>
       ))}
     </List.Root>
+    </Container>
     </Box>
   );
 };

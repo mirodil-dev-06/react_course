@@ -5,6 +5,7 @@ import Todo from "./components/todo/Todo";
 import Info from "./components/info/Info";
 import { useContext } from 'react';
 import { ColorContext } from './components/colorContext/ColorContext';
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   const { backgroundColor } = useContext(ColorContext);
@@ -18,9 +19,8 @@ const App = () => {
           <Todo />
         </Container>
       </Box>
-      <Container maxW='xl' margin='auto'>
       <Info />
-      </Container>
+      <Footer/>
     </>
   );
 };
