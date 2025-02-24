@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Flex, Separator } from '@chakra-ui/react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 
 const styles = {
   navContainer: {
+    maxW: { base: '90%', md: 'lg' },
     width: '100%',
     py: '4',
+    mx: 'auto'
   },
   flexContainer: {
     gap: '3',

@@ -7,49 +7,50 @@ import { toggleTodo } from '../../redux/action/action';
 import Modal from '../modal/Modal';
 import { FaCheck } from "react-icons/fa6";
 
+const styles = {
+  container: {
+    maxW: { base: '90%', md: 'lg' },
+    mx: 'auto',
+  }
+};
+
 function Todo() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedTodo, setSelectedTodo] = useState(null); // Tanlangan todo ni saqlash uchun state
-  const [isEditMode, setIsEditMode] = useState(false); // Modalning rejimi (tahrirlash yoki yangi qo'shish)
+  const [selectedTodo, setSelectedTodo] = useState(null); 
+  const [isEditMode, setIsEditMode] = useState(false);
   const dispatch = useDispatch();
   const todos = useSelector(state => state.todo?.todos || []);
 
   useEffect(() => {
-    // Load todos from localStorage when the component mounts
     const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
-    // Dispatch an action to set the loaded todos in the Redux store
     dispatch({ type: 'SET_TODOS', payload: savedTodos });
   }, [dispatch]);
 
   useEffect(() => {
-    // Save todos to localStorage whenever the todos state changes
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
   const openModal = (todo = null) => {
-    setSelectedTodo(todo); // Tanlangan todo ni saqlash
-    setIsEditMode(!!todo); // Agar todo mavjud bo'lsa, tahrirlash rejimi
+    setSelectedTodo(todo); 
+    setIsEditMode(!!todo); 
     setIsOpen(true);
   };
 
   const closeModal = () => {
     setIsOpen(false);
-    setSelectedTodo(null); // Modal yopilganda tanlangan todo ni tozalash
-    setIsEditMode(false); // Rejimni tozalash
+    setSelectedTodo(null); 
+    setIsEditMode(false); 
   };
 
   return (
-    <Container maxW='lg' mx='auto' py='8'>
-      <Text fontSize='18px' textAlign='center' color='#333'>#{todos.length}</Text>
+    <Container maxW='lg' mx='auto' py='8' {...styles.container}>
       <Text fontSize='20px' textAlign='center' color='white'>Time to focus!</Text>
       <Box display='flex' justifyContent='space-between' alignItems='center'>
         <Text fontSize='20px' fontWeight='bold' color='#fff'>
           Tasks
         </Text>
         <Box>
-          <IconButton variant='outline' color='white'>
-            <BiDotsVertical />
-          </IconButton>
+      <Text fontSize='18px' textAlign='center' color='#333'>#{todos.length}</Text>
         </Box>
       </Box>
       <Separator size="lg" mt='3' />
@@ -75,7 +76,7 @@ function Todo() {
                 <FaCheck />
               </IconButton>
               <Text
-                onClick={() => openModal(todo)} // Task bosilganda modal ochilsin
+                onClick={() => openModal(todo)} 
                 textDecoration={todo.completed ? 'line-through' : 'none'}>
                 {todo.text}
               </Text>
@@ -85,7 +86,6 @@ function Todo() {
         ))}
       </List.Root>
 
-      {/* Modal */}
       <Modal
         isOpen={isOpen}
         closeModal={closeModal}
@@ -95,7 +95,7 @@ function Todo() {
 
       <Button
         mt='5'
-        onClick={() => openModal()} // Yangi task qo'shish uchun modal ochish
+        onClick={() => openModal()}
         width='100%'
         py='7'
         backgroundColor='rgba(0, 0, 0, 0.15)'

@@ -2,15 +2,20 @@ import React from 'react';
 import { Box, Container, Text, Link, List } from '@chakra-ui/react';
 
 const styles = {
+  container: {
+    maxW: { base: '90%', md: 'lg' },
+    mx: 'auto',
+    // maxW='xl' margin='auto' 
+  },
   heading: {
-    fontSize: '30px',
+    fontSize: {xl: '30px', lg: '25px', md: '20px', sm: '10px'},
     fontWeight: 'bold',
     color: '#541c1f',
   },
   subHeading: {
     color: '#541c1f',
     fontWeight: 'black',
-    fontSize: '25px',
+    fontSize: {xl: '25px', lg: '20px', md: '18px', sm: '15px'},
     mt: '10',
     position: 'relative',
   },
@@ -69,8 +74,8 @@ const Info = () => {
 
 
   return (
+    <Container {...styles.container}>
     <Box py="10">
-      <Container maxW='xl' margin='auto'>
       <Heading>An online Pomodoro Timer to boost your productivity</Heading>
 
       <SubHeading>What is Pomofocus?</SubHeading>
@@ -101,8 +106,8 @@ const Info = () => {
         </List.Item>
       ))}
     </List.Root>
-    </Container>
     </Box>
+    </Container>
   );
 };
 
