@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Box, Button } from '@chakra-ui/react';
+import { Input, Box, Button, Flex } from '@chakra-ui/react'; 
 import { useDispatch } from 'react-redux';
 import { addTodo, editTodo, deleteTodo } from '../../redux/action/action';
 
@@ -20,12 +20,15 @@ const styles = {
   },
   buttonContainer: {
     display: 'flex',
+    flexDirection: { base: 'column', md: 'row' }, 
     justifyContent: 'flex-end',
+    alignItems: { base: 'stretch', md: 'center' }, 
     mt: '10',
     gap: '4',
   },
   button: {
     px: '6',
+    width: { base: '100%', md: 'auto' }, 
   },
   deleteButton: {
     variant: 'outline',
@@ -52,12 +55,10 @@ const Modal = ({ isOpen, closeModal, selectedTodo, isEditMode }) => {
     }
   }, [isOpen]);
 
-  
   useEffect(() => {
     localStorage.setItem('inputValue', inputValue);
   }, [inputValue]);
 
- 
   useEffect(() => {
     if (!isOpen) {
       localStorage.removeItem('inputValue');
@@ -75,7 +76,7 @@ const Modal = ({ isOpen, closeModal, selectedTodo, isEditMode }) => {
     if (isEditMode && selectedTodo) {
       dispatch(editTodo(selectedTodo.id, inputValue));
     } else {
-      dispatch(addTodo(inputValue)); 
+      dispatch(addTodo(inputValue));
     }
 
     setInputValue('');
@@ -98,7 +99,7 @@ const Modal = ({ isOpen, closeModal, selectedTodo, isEditMode }) => {
           onChange={(e) => setInputValue(e.target.value)}
         />
       </Box>
-      <Box {...styles.buttonContainer}>
+      <Flex {...styles.buttonContainer}>
         {isEditMode && (
           <Button {...styles.button} {...styles.deleteButton} onClick={handleDelete}>
             Delete
@@ -108,9 +109,9 @@ const Modal = ({ isOpen, closeModal, selectedTodo, isEditMode }) => {
           Cancel
         </Button>
         <Button {...styles.button} {...styles.saveButton} onClick={handleSave}>
-          {isEditMode ? 'Save Changes' : 'Save'} 
+          {isEditMode ? 'Save Changes' : 'Save'}
         </Button>
-      </Box>
+      </Flex>
     </Box>
   );
 };
